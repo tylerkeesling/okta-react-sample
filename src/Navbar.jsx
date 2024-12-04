@@ -25,20 +25,23 @@ const Navbar = () => {
     return null;
   }
 
+  const siteName = import.meta.env.VITE_SITE_NAME;
+  const logo = import.meta.env.VITE_LOGO;
+
   return (
     <div>
       <Menu fixed="top" inverted>
         <Container>
           <Menu.Item header>
-            <Image size="mini" src="/react.svg" />
+            <Image size="mini" src={logo} />
             &nbsp;
-            <Link to="/">Okta-React Sample Project</Link>
+            <Link to="/">{siteName}</Link>
           </Menu.Item>
           {authState.isAuthenticated && (
-          <Menu.Item id="messages-button">
-            <Icon name="mail outline" />
-            <Link to="/messages">Messages</Link>
-          </Menu.Item>
+            <Menu.Item id="messages-button">
+              <Icon name="mail outline" />
+              <Link to="/messages">Messages</Link>
+            </Menu.Item>
           )}
           {authState.isAuthenticated && (
             <Menu.Item id="profile-button">
@@ -46,11 +49,11 @@ const Navbar = () => {
             </Menu.Item>
           )}
           {authState.isAuthenticated && (
-            <Menu.Item id="logout-button" onClick={logout}>Logout</Menu.Item>
+            <Menu.Item id="logout-button" onClick={logout}>
+              Logout
+            </Menu.Item>
           )}
-          {!authState && !authState.isAuthenticated && (
-            <Menu.Item onClick={login}>Login</Menu.Item>
-          )}
+          {!authState && !authState.isAuthenticated && <Menu.Item onClick={login}>Login</Menu.Item>}
         </Container>
       </Menu>
     </div>
